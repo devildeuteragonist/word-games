@@ -7,3 +7,5 @@ interactive, fourth-wall-breaking media in general is fun, but i'm not at the le
 so i make do with the limited skillset i have. :) 
 
 this repository is yet another bundle of ambitions moved out of the memory repo. 
+
+if i can display any finished word games in user-friendly, pretty ways, i will include links to relevant places where those games can be accessed, hopefully!
