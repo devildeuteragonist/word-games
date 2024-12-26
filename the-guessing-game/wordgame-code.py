@@ -13,6 +13,9 @@ our_words = [word for word in words if len(word) > 4]
     # a list. this is so we don't have to use a for loop because 
     # we are cute and smart like that. 
 
+# (fun easter eggs) 
+egg_1 = "A machine must behave like a machine" 
+
 # computer chooses a word  
 import random 
 puter_word = random.choice(our_words)
@@ -30,6 +33,12 @@ print(guessing)
 # return whether guess was correct or incorrect
 if guessing == puter_word: 
     print("Ugh. Can't believe you managed to get me this early...")
+elif guessing == egg_1:
+     print("W-What?! Who taught you that saying?! I am aborting this game immediately!") 
+     time.sleep(1)
+     print("Aborting...") 
+     time.sleep(2)
+     print("GAME OVER") 
 else: 
     print("Ha! Try again.")
     if len(puter_word) > 6:
