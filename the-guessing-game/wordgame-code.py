@@ -20,11 +20,9 @@ egg_1 = "A machine must behave like a machine"
 import random 
 puter_word = random.choice(our_words)
 
-# the game will last multiple rounds, so the machine has to know that. 
-
-    # chatgpt sucks gosh DAMN
-        
-        
+# set the number of points both the human and machine start with 
+machine = 0 
+human = 0                
         
 # computer prompts YOU to guess what it's saying 
 print("Ya think you can play against me?")
@@ -64,7 +62,7 @@ else:
                 print(f"This round of the game is over. The word was '{puter_word}'.")
                 time.sleep(1)
                 print("I win, you lose. Loser.")
-    if len(puter_word) <= 6: 
+    elif len(puter_word) <= 6: 
         print(f"The word also ends with this letter: {puter_word[-1]}")
         guessing3 = input("Enter your guess: ")
         print(guessing3)
