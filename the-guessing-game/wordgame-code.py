@@ -21,8 +21,8 @@ import random
 puter_word = random.choice(our_words)
 
 # the game will last multiple rounds, so the machine has to know that. 
-total_rounds = 20
-def round_number(total_rounds):
+total_rounds = 5
+def round_number(total_rounds, puter_word, egg_1):
     round_number = 1
 
     while round_number <= total_rounds:
