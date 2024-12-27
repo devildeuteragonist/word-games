@@ -8,7 +8,7 @@ with open('5000-common-words.txt', 'r') as f:
 import time
 
 # cleaning the file of words three letters or shorter 
-our_words = [word for word in words if len(word) > 4]
+our_words = [word for word in words if len(word) > 4 or if len(word) < 10]
     # there are brackets here so python knows we are dealing with 
     # a list. this is so we don't have to use a for loop because 
     # we are cute and smart like that. 
