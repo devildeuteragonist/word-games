@@ -20,9 +20,11 @@ egg_1 = "A machine must behave like a machine"
 import random 
 puter_word = random.choice(our_words)
 
-# set the number of points both the human and machine start with 
+# set the number of points and rounds 
+# both the human and machine start with 
 machine = 0 
-human = 0                
+human = 0          
+rounds = 0      
         
 # computer prompts YOU to guess what it's saying 
 print("Ya think you can play against me?")
