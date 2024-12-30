@@ -31,7 +31,7 @@ while round_count <= total_rounds:
 
     # round counter for the reference of the player
     time.sleep(2)
-    print(f"ROUND {round_counter} OF 20 STARTS")
+    print(f"ROUND {round_count} OF 20 STARTS")
     time.sleep(2)      
     
     # computer prompts YOU to guess what it's saying 
