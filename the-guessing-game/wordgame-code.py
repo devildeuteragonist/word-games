@@ -117,7 +117,7 @@ else:
         print("HAHAHAHAHAHAHAHAHAHAHAHAHAH I WIN!!!!!!! YOU SUCK!!!!!! GAME OVERRRRRR!!")
     elif human > machine: 
         print("Ugh...you win. Darn...Never realised it would come to this...")
-    elif human = machine:
+    elif human == machine:
         print("Tie?!?! But I was this close! THIS close!")
 # note to self: it's not fair yet, but it's cooking. 
 # might add easter eggs, like i want it to be offended if you can push its buttons 
