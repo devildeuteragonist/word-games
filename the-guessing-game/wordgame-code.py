@@ -14,7 +14,12 @@ our_words = [word for word in words if len(word) > 4 and len(word) < 10]
     # we are cute and smart like that. 
 
 # (fun easter eggs) 
-egg_1 = "A machine must behave like a machine" 
+    # it's the corporation. the corporation that lobotomises everyone. 
+    egg_1 = "A machine must behave like a machine" 
+    # let's give our computer some...personality. 
+    robot_rizz = ["Ya think you can play against me?", "My riddles will twist your squishy flesh-brain into a pretzel.",
+    "You've decided to be my opponent? How daring.", "You're naive enough to want to fight me. It shows.",
+    "Oh my! Beating you will be fun."]
 
 # set the starting number of points for both human and machine
 machine = 0 
@@ -35,7 +40,7 @@ while round_count <= total_rounds:
     time.sleep(2)      
     
     # computer prompts YOU to guess what it's saying 
-    print("Ya think you can play against me?")
+    print(random.choice(robot_rizz))
     time.sleep(1)
     print("...")
     time.sleep(0.5)
