@@ -27,7 +27,7 @@ human = 0
 
 # set quantities for number of rounds
 round_count = 1      
-total_rounds = 5
+total_rounds = 20
 
 while round_count <= total_rounds:
     # computer chooses a word  
