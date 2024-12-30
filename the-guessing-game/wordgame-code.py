@@ -27,7 +27,12 @@ total_rounds = 20
 while round_count <= total_rounds:
     # computer chooses a word  
     import random 
-    puter_word = random.choice(our_words)       
+    puter_word = random.choice(our_words) 
+
+    # round counter for the reference of the player
+    time.sleep(2)
+    print(f"ROUND {round_counter} OF 20 STARTS")
+    time.sleep(2)      
     
     # computer prompts YOU to guess what it's saying 
     print("Ya think you can play against me?")
