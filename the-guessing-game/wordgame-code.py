@@ -34,10 +34,11 @@ while round_count <= total_rounds:
     import random 
     puter_word = random.choice(our_words) 
 
-    # round counter for the reference of the player
+    # round/point counter for the reference of the player
     time.sleep(2)
     print(f"ROUND {round_count} OF 20 STARTS")
-    time.sleep(2)      
+    time.sleep(0.5)
+    print(f"player {human} points, computer {machine} points")      
     
     # computer prompts YOU to guess what it's saying 
     print(random.choice(robot_rizz))
@@ -52,12 +53,15 @@ while round_count <= total_rounds:
     # return whether guess was correct or incorrect
     if guessing == puter_word: 
         print("Ugh. Can't believe you managed to get me this early...")
+        human += 1 
     elif guessing == egg_1:
         print("W-What?! Who taught you that saying?! I am aborting this game immediately!") 
         time.sleep(1)
         print("Aborting...") 
         time.sleep(2)
-        print("YOU LOST A ROUND!") 
+        print("YOU LOST A ROUND!")
+        human -= 999999999999999999999999999999
+        break
     else: 
         print("Ha! Try again.")
         if len(puter_word) > 6:
@@ -66,6 +70,7 @@ while round_count <= total_rounds:
             guessing2 = input("Enter your guess: ")
             print(guessing2)
             if guessing2 == puter_word: 
+                human += 1
                 print("Man. I guess you got it.")
             else: 
                 print(f"The word also contains this letter: {puter_word[3]}")
@@ -73,10 +78,12 @@ while round_count <= total_rounds:
                 print(guessing4)
                 if guessing4 == puter_word: 
                     print("Drat! How could you beat me!?")
+                    human += 1
                 else: 
                     print(f"This round of the game is over. The word was '{puter_word}'.")
                     time.sleep(1)
                     print("I win, you lose. Loser.")
+                    machine += 1 
         elif len(puter_word) <= 6: 
             print(f"The word also ends with this letter: {puter_word[-1]}")
             guessing3 = input("Enter your guess: ")
@@ -85,6 +92,7 @@ while round_count <= total_rounds:
                 print("You win this round...")
                 time.sleep(2)
                 print("BUT I'LL GET YOU NEXT TIME!")
+                human += 1
             else:
                 print(f"The word also contains this letter: {puter_word[2]}")
                 guessing5 = input("Enter your guess: ")
@@ -93,12 +101,32 @@ while round_count <= total_rounds:
                     print("You got me beat...")
                     time.sleep(2)
                     print("BUT THAT WON'T HAPPEN AGAIN!")
+                    human += 1 
                 else:
                     print(f"The round for this game is over. The word was '{puter_word}'.")
                     time.sleep(1)
                     print("It's men versus machines, baby! And I WON!")
+                    machine += 1 
     round_count += 1
+else: 
+    print("TOTAL SCORE:")
+    time.sleep(1)
+    print(f"computer: {machine}")
+    print(f"player: {human}")
+    if machine > human:
+        print("HAHAHAHAHAHAHAHAHAHAHAHAHAH I WIN!!!!!!! YOU SUCK!!!!!! GAME OVERRRRRR!!")
+    elif human > machine: 
+        print("Ugh...you win. Darn...Never realised it would come to this...")
+    elif human = machine:
+        print("Tie?!?! But I was this close! THIS close!")
 # note to self: it's not fair yet, but it's cooking. 
 # might add easter eggs, like i want it to be offended if you can push its buttons 
 # in particular ways. 
 # another note to self: maybe make the third hint random. 
+
+# another hint to self: i want the player to be able to choose different game modes, 
+# and to display this on a website (with html)
+
+# considering maybe an easy mode, normal mode, and hard mode. 
+# also considering a timed mode. 
+# and maybe a mode where the goal is merely to reach a certain amounts of points. hmm...
