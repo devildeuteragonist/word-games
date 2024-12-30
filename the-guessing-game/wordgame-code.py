@@ -15,9 +15,9 @@ our_words = [word for word in words if len(word) > 4 and len(word) < 10]
 
 # (fun easter eggs) 
     # it's the corporation. the corporation that lobotomises everyone. 
-    egg_1 = "A machine must behave like a machine" 
+egg_1 = "A machine must behave like a machine" 
     # let's give our computer some...personality. 
-    robot_rizz = ["Ya think you can play against me?", "My riddles will twist your squishy flesh-brain into a pretzel.",
+robot_rizz = ["Ya think you can play against me?", "My riddles will twist your squishy flesh-brain into a pretzel.",
     "You've decided to be my opponent? How daring.", "You're naive enough to want to fight me. It shows.",
     "Oh my! Beating you will be fun."]
 
