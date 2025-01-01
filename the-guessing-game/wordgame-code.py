@@ -59,7 +59,7 @@ while round_count <= total_rounds:
         time.sleep(0.25)
         print("...")
         time.sleep(0.5)
-    else:
+    else
     guessing = input("Enter your guess: ")
     # note to self: you have yet to implement the hint function. 
 
