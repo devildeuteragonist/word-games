@@ -64,7 +64,7 @@ while round_count <= total_rounds:
     # return whether guess was correct or incorrect
     if guessing == puter_word: 
         print("Ugh. Can't believe you managed to get me this early...")
-        human += 1 
+        human += 2 
     elif guessing == egg_1:
         print("W-What?! Who taught you that saying?! I am aborting this game immediately!") 
         time.sleep(1)
@@ -81,7 +81,7 @@ while round_count <= total_rounds:
             guessing2 = input("Enter your guess: ")
             print(guessing2)
             if guessing2 == puter_word: 
-                human += 1
+                human += 1.5
                 print("Man. I guess you got it.")
             else: 
                 print(f"The word also contains this letter: {puter_word[3]}")
@@ -116,7 +116,7 @@ while round_count <= total_rounds:
                 print("You win this round...")
                 time.sleep(2)
                 print("BUT I'LL GET YOU NEXT TIME!")
-                human += 1
+                human += 1.5
             else:
                 print(f"The word also contains this letter: {puter_word[2]}")
                 guessing5 = input("Enter your guess: ")
