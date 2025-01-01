@@ -24,3 +24,10 @@ the aim: computer 'thinks' of a word. this word is concealed from the player, bu
 - points will be tallied
 
 yeah i'll clean this up somehow at some point soon. i'm thinking i'll write the game in python or something and it can be played directly from a colab notebook or something
+
+## update [1/1/2025]: more thoughts. 
+- **the wordgame that is actually being made is slightly different than described above maybe tomorrow i'll clean up the readme.**
+- the actual wordgame is in the process of creation. it's janky but so far challenging and fun. will ask friends to playtest it. 
+- want it to display on a web interface, as well as other word games in this repo. 
+- maybe draw a sprite for the 'computer' and compose a soundtrack or something. 
+- the wordgame would benefit MASSIVELY from a timer on the guesses. 
