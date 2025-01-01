@@ -26,12 +26,13 @@ human = 0
 round_count = 1      
 total_rounds = 20
 
-print("You are given 20 seconds to read the following instructions:")
+print("You are given 15 seconds to read the following instructions\nbefore the game starts:")
 time.sleep(1)
 print("===================================================================================")
 print("This game is best played with a pencil and paper in hand.\nPlease do not look up any words. That is cheating!")
 print("Input is case-sensitive, and sensitive to spaces and other characters.\nThe computer is also extremely obnoxious.")
 print("===================================================================================")
+time.sleep(15)
 while round_count <= total_rounds:
     # computer chooses a word  
     import random 
