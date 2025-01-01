@@ -26,23 +26,12 @@ human = 0
 round_count = 1      
 total_rounds = 20
 
-print("(Note from the programmer: this game is best played with a pencil and paper in hand.)")
-time.sleep(3)
-print("(Also note from the programmer: Please do not look up any words. That is cheating!)")
-time.sleep(0.75)
-print("...")
-time.sleep(0.75)
-print("(One last thing! Input is case-sensitive!")
-print("It is also sensitive to spaces and other characters!)")
-time.sleep(4)
-print("...")
-time.sleep(2)
-print("(Oh yeah, and the computer is incredibly obnoxious.)")
-time.sleep(3)
-print("...")
-time.sleep(2)
-print("(You ready? On the count of five!)")
-time.sleep(5)
+print("You are given 20 seconds to read the following instructions:")
+time.sleep(1)
+print("===================================================================================")
+print("This game is best played with a pencil and paper in hand.\nPlease do not look up any words. That is cheating!")
+print("Input is case-sensitive, and sensitive to spaces and other characters.\nThe computer is also extremely obnoxious.")
+print("===================================================================================")
 while round_count <= total_rounds:
     # computer chooses a word  
     import random 
