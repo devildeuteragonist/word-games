@@ -48,6 +48,7 @@ while round_count <= total_rounds:
     print(f"I'm thinking of a word that is {len(puter_word)} letters long...")
     print(f"...that starts with {puter_word[0]} and ends with {puter_word[-1]}.")
     time.sleep(0.5)
+    # offer hint if the word is long 
     if len(puter_word) > 6:
         query = input("Want an extra hint this round for 0.5 points? y/n: ")
         if query == "y":
@@ -60,7 +61,6 @@ while round_count <= total_rounds:
         print("...")
         time.sleep(0.5)
     guessing = input("Enter your guess: ")
-    # note to self: you have yet to implement the hint function. 
 
     # return whether guess was correct or incorrect
     if guessing == puter_word: 
