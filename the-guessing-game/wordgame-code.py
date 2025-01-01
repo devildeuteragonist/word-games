@@ -167,3 +167,5 @@ else:
 # considering maybe an easy mode, normal mode, and hard mode. 
 # also considering a timed mode. 
 # and maybe a mode where the goal is merely to reach a certain amounts of points. hmm...
+
+# maybe implement switch statements for readability 
