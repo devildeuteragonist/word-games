@@ -12,11 +12,8 @@ our_words = [word for word in words if len(word) > 4 and len(word) < 10]
     # there are brackets here so python knows we are dealing with 
     # a list. this is so we don't have to use a for loop because 
     # we are cute and smart like that. 
-
-# (fun easter eggs) 
-    # it's the corporation. the corporation that lobotomises everyone. 
-egg_1 = "A machine must behave like a machine" 
-    # let's give our computer some...personality. 
+ 
+# let's give our computer some...personality. 
 robot_rizz = ["Ya think you can play against me?", "My riddles will twist your squishy flesh-brain into a pretzel!",
     "You've decided to be my opponent? How daring.", "You're naive enough to think you can beat me. It sure shows, kid.",
     "Kahahaha! Beating you will be fun."]
@@ -83,14 +80,6 @@ while round_count <= total_rounds:
     if guessing == puter_word: 
         print("Ugh. Can't believe you managed to get me this early...")
         human += 2 
-    elif guessing == egg_1:
-        print("W-What?! Who taught you that saying?! I am aborting this game immediately!") 
-        time.sleep(1)
-        print("Aborting...") 
-        time.sleep(2)
-        print("YOU LOST A ROUND!")
-        human -= 999999999999999999999999999999
-        break
     else: 
         print("Ha! Try again.")
         if len(puter_word) > 6:
