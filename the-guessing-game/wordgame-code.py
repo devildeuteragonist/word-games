@@ -90,6 +90,19 @@ while round_count <= total_rounds:
                 if guessing4 == puter_word: 
                     print("Drat! How could you beat me!?")
                     human += 1
+                elif query == "y":
+                    print(f"The word also contains this letter: {puter_word[5]}")
+                    guessing6 = input("Enter your guess: ")
+                    if guessing6 == puter_word:
+                        print("You got me beat...")
+                        time.sleep(2)
+                        print("BUT THAT WON'T HAPPEN AGAIN!")
+                        human += 1 
+                    else:
+                        print(f"The round for this game is over. The word was '{puter_word}'.")
+                        time.sleep(1)
+                        print("It's men versus machines, baby! And I WON!")
+                        machine += 1 
                 else: 
                     print(f"This round of the game is over. The word was '{puter_word}'.")
                     time.sleep(1)
@@ -113,6 +126,19 @@ while round_count <= total_rounds:
                     time.sleep(2)
                     print("BUT THAT WON'T HAPPEN AGAIN!")
                     human += 1 
+                elif query == "y":
+                    print(f"The word also contains this letter: {puter_word[3]}")
+                    guessing7 = input("Enter your guess: ")
+                    if guessing7 == puter_word:
+                        print("You got me beat...")
+                        time.sleep(2)
+                        print("BUT THAT WON'T HAPPEN AGAIN!")
+                        human += 1 
+                    else:
+                        print(f"The round for this game is over. The word was '{puter_word}'.")
+                        time.sleep(1)
+                        print("It's men versus machines, baby! And I WON!")
+                        machine += 1 
                 else:
                     print(f"The round for this game is over. The word was '{puter_word}'.")
                     time.sleep(1)
