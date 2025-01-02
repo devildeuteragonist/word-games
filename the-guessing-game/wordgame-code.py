@@ -31,7 +31,7 @@ instruction = input("(This is the programmer speaking.\nDo you need instructions
 while instruction not in ["y", "n"]:
     instruction = input("Please enter y or n, lowercase with no spaces or punctuation: ")
 if instruction == "y":
-    print("You are given 15 seconds to read the following instructions\nbefore the game starts:")
+    print("(You are given 15 seconds to read the following instructions\nbefore the game starts:)")
     time.sleep(1)
     print("===================================================================================")
     print("(This game is best played with a pencil and paper in hand.\nPlease do not look up any words. That is cheating!)")
