@@ -35,7 +35,7 @@ if instruction == "y":
     time.sleep(1)
     print("===================================================================================")
     print("(This game is best played with a pencil and paper in hand.\nPlease do not look up any words. That is cheating!)")
-    print("(Input is case-sensitive, and sensitive to spaces and other characters.\nThe computer is also extremely obnoxious.)")
+    print("(Input is case-sensitive, and sensitive to spaces and other characters.\nThe computer is also extremely obnoxious and I hate him.)")
     print("===================================================================================")
     time.sleep(15)
 elif instruction == "n": 
