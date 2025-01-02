@@ -27,10 +27,10 @@ round_count = 1
 total_rounds = 20
 
 # instructions yes or no
-instruction_yn = input("(This is the programmer speaking.\nDo you need instructions for The Guessing Game?) y/n: ")
-while instruction_yn not in ["y", "n"]:
-    instruction_yn = input("Please enter y or n, lowercase with no spaces or punctuation: ")
-if instruction_yn == "y":
+instruction = input("(This is the programmer speaking.\nDo you need instructions for The Guessing Game?) y/n: ")
+while instruction not in ["y", "n"]:
+    instruction = input("Please enter y or n, lowercase with no spaces or punctuation: ")
+if instruction == "y":
     print("You are given 15 seconds to read the following instructions\nbefore the game starts:")
     time.sleep(1)
     print("===================================================================================")
@@ -38,7 +38,7 @@ if instruction_yn == "y":
     print("(Input is case-sensitive, and sensitive to spaces and other characters.\nThe computer is also extremely obnoxious.)")
     print("===================================================================================")
 time.sleep(15)
-elif query == "n": 
+elif instruction == "n": 
     print("(Okay. Good luck!)")
 
 # game
