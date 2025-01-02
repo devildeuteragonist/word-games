@@ -55,14 +55,12 @@ while round_count <= total_rounds:
     # offer hint if the word is long 
     if len(puter_word) > 6:
         query = input("Want an extra hint this round for 0.5 points? y/n: ")
-        while query == "y" or "n":
-            try:
-                if query == "y":
-                    human -= 0.5
-                elif query == "n": 
-                    human += 0
-            except:
-                print("Please enter y or n, lowercase with no spaces or punctuation")
+        while query not in ["y", "n"]:
+            query = input("Please enter y or n, lowercase with no spaces or punctuation: ")
+        if query == "y":
+            human -= 0.5
+        elif query == "n": 
+            human += 0
         time.sleep(0.25)
         print("...")
         time.sleep(0.5)
