@@ -8,7 +8,7 @@ import random
 # importing those 5000 most common words
 url = "https://raw.githubusercontent.com/devildeuteragonist/word-games/refs/heads/main/guess-n-gamble/5000-common-words.txt"
 with urllib.request.urlopen(url) as f: 
-    words = f.read().splitlines() 
+    words = f.read().decode("utf-8").splitlines() 
 
 # cleaning the file of words three letters or shorter 
 our_words = [word for word in words if len(word) > 4 and len(word) < 12]
