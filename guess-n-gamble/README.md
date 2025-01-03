@@ -3,6 +3,6 @@ a fun (i.e. intentionally frustrating and tedious) high-stakes guessing game tha
 
 this project was inspired by a simple bulls-and-cows game that i programmed for class during my first year of college. i have not properly worked with python in several months, so it was at first intended to be a refresher of basic aspects of the language, but i decided that it would be fun to make my guessing game more "game-like," with a points system, more sophisticated interactivity, et cetera, et cetera. took some effort, but it was fun. 
 
-it is not terribly complex, but i hope it is enjoyable. 
+guess 'n' gamble is not terribly complex, but i hope it is enjoyable. 
 
 if you hate the game enough, i've also made an easy mode! i won't taunt you for taking advantage of it because i am also horrible at fighting against this monster of a program i've created. the computer will, though. 
