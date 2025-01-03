@@ -80,12 +80,14 @@ while round_count <= total_rounds:
     
     # asking if the player if they want to G A M B L E 
     if len(puter_word) > 6: 
-        print(f"Want an extra hint this round for {random.choice(points_to_wager)}?") 
-        query = input(f"If you're successful, you gain {random.choice(points_to_earn)} points back. y/n: ")
+        awdangit = random.choice(points_to_wager)
+        icantstopwinning = random.choice(points_to_earn)
+        print(f"Want an extra hint this round for {awdangit}?") 
+        query = input(f"If you're successful, you gain {icantstopwinning} points back. y/n: ")
         while query not in ["y", "n"]:
             query = input("Please enter y or n, lowercase with no spaces or punctuation: ")
         if query == "y":
-            human -= random.choice(points_to_wager)
+            human -= awdangit
         elif query == "n": 
             human += 0
             time.sleep(0.25)
@@ -111,7 +113,7 @@ while round_count <= total_rounds:
                 hint_use_counter += 1
                 if guessing2 == puter_word:
                     print(random.choice(human_success))
-                    human += random.choice(points_to_earn)  
+                    human += icantstopwinning  
                     break
                 elif hint_use_counter == 5:
                     print(f"The word was {puter_word}.")
