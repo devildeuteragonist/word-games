@@ -42,7 +42,8 @@ if instruction == "y":
     print("===================================================================================")
     print("(This game is best played with a pencil and paper in hand.\nPlease do not look up any words. That is cheating!)")
     print("(Input is case-sensitive, and sensitive to SPACES and OTHER CHARACTERS!\nThe computer is also extremely obnoxious and I hate him.)")
-    print("If words are longer than a certain length, you are given the chance to gamble\n some points for an extra hint.")
+    print("Sometimes, you are given the chance to gamble some points for an extra hint.")
+    print("As you use more hints in a round, the points you earn back are reduced if you succeed.\nPoints earned back from wagering are protected from this.")
     print("===================================================================================")
     time.sleep(15)
 elif instruction == "n": 
