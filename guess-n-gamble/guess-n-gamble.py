@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # importing those 5000 most common words
-with open('5000-common-words.txt', 'r') as f: 
+with open('https://raw.githubusercontent.com/devildeuteragonist/word-games/refs/heads/main/guess-n-gamble/5000-common-words.txt', 'r') as f: 
     words = f.read().splitlines() 
 
 # (importing something for a magic trick)
