@@ -93,6 +93,7 @@ while round_count <= total_rounds:
             time.sleep(0.5)
     else:
         print("No hints are available to gamble for words less than six letters long.")
+        query == "n"
     guessing = input("Enter your guess: ")
 
 
