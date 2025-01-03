@@ -25,7 +25,7 @@ human = 0
 # set quantities for number of rounds and hints
 round_count = 1      
 total_rounds = 20
-hint_use_counter = 0
+hint_use_counter = 1
 
 # instructions yes or no
 instruction = input("(This is the programmer speaking.\nDo you need instructions for The Guessing Game?) y/n: ")
