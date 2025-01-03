@@ -94,6 +94,7 @@ while round_count <= total_rounds:
                 print(random.choice(computer_taunts))
                 machine += 1 
                 break
+    hint_use_counter = 1
     round_count += 1
 
 # game ending 
