@@ -85,9 +85,11 @@ while round_count <= total_rounds:
             if guessing == puter_word:
                 print(random.choice(human_success))
                 human += 2-(hint_use_counter*0.5)
+                break
             elif hint_use_counter == 4:
                 print(random.choice(computer_taunts))
                 machine += 1 
+                break
     round_count += 1
 
 # game ending 
