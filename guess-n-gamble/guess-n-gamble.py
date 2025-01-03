@@ -107,33 +107,29 @@ while round_count <= total_rounds:
         if query == "y":
             while hint_use_counter < 5:
                 print(f"hint {hint_use_counter} out of 4")
-                input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
+                guessing2 = input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
                 hint_use_counter += 1
-                if guessing == puter_word:
+                if guessing2 == puter_word:
                     print(random.choice(human_success))
-                    human += random.choice(points_to_earn)
-                    break
+                    human += random.choice(points_to_earn)  
                 elif hint_use_counter == 5:
                     print(f"The word was {puter_word}.")
                     time.sleep(0.25)
                     print(random.choice(computer_taunts))
                     machine += 1 
-                    break
         elif query == "n":
             while hint_use_counter < 4:
-                print(f"hint {hint_use_counter} out of 4")
-                input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
+                print(f"hint {hint_use_counter} out of 3")
+                guessing2 = input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
                 hint_use_counter += 1
-                if guessing == puter_word:
+                if guessing2 == puter_word:
                     print(random.choice(human_success))
                     human += 2-(hint_use_counter*0.25)
-                    break
                 elif hint_use_counter == 4:
                     print(f"The word was {puter_word}.")
                     time.sleep(0.25)
                     print(random.choice(computer_taunts))
                     machine += 1 
-                    break
     hint_use_counter = 1
     round_count += 1
 
