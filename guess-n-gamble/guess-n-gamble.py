@@ -77,7 +77,24 @@ while round_count <= total_rounds:
     print(f"I'm thinking of a word that is {len(puter_word)} letters long...")
     print(f"...that starts with {puter_word[0]} and ends with {puter_word[-1]}.")
     time.sleep(0.5)
+    
+    # asking if the player if they want to G A M B L E 
+    if len(puter_word) > 6: 
+        print(f"Want an extra hint this round for {random.choice(points_to_wager)}?") 
+        query = input(f"If you're successful, you gain {random.choice(points_to_earn)} points back. y/n: ")
+        while query not in ["y", "n"]:
+            query = input("Please enter y or n, lowercase with no spaces or punctuation: ")
+        if query == "y":
+            human -= random.choice(points_to_wager)
+        elif query == "n": 
+            human += 0
+            time.sleep(0.25)
+            print("...")
+            time.sleep(0.5)
+    else:
+        print("No hints are available to gamble for words less than six letters long.")
     guessing = input("Enter your guess: ")
+
 
     # handling subsequent guesses 
     if guessing == puter_word: 
@@ -85,21 +102,6 @@ while round_count <= total_rounds:
         human += 2 
     else: 
         print("Ha! Try again.")
-        # asking if the player if they want to G A M B L E 
-        if len(puter_word) > 6: 
-            print(f"Want an extra hint this round for {random.choice(points_to_wager)}?") 
-            query = input(f"If you're successful, you gain {random.choice(points_to_earn)} points back. y/n: ")
-            while query not in ["y", "n"]:
-                query = input("Please enter y or n, lowercase with no spaces or punctuation: ")
-            if query == "y":
-                human -= random.choice(points_to_wager)
-            elif query == "n": 
-                human += 0
-            time.sleep(0.25)
-            print("...")
-            time.sleep(0.5)
-        else:
-            print("No hints are available to gamble for words less than six letters long.")
         # the actual subsequent-guesses-and-hint process
         if query == "y":
             while hint_use_counter < 5:
