@@ -23,10 +23,6 @@ computer_taunts = ["It's men versus machines, baby!\nAnd I WON!", "I win, you lo
 human_success = ["Man. I guess you got it.", "Ugh! You got me!", 
                  "Drat! How could you beat me!?", "You got me beat...\nBUT THAT WON'T HAPPEN AGAIN!"]
 
-# LET'S GO GAMBLING! AH DANG IT! AH DANG IT! AH DANG IT!
-points_to_wager = [1, 2]
-points_to_earn = [3, 4, 5]
-
 # set the starting number of points for both human and machine
 machine = 0 
 human = 0          
@@ -62,6 +58,15 @@ while round_count <= total_rounds:
     hints = [f"The second letter of the word is this: {puter_word[1]}", 
          f"The fourth letter of the word is this: {puter_word[3]}",
          f"The third letter of the word is this: {puter_word[2]}"]
+    
+    # defining possible amounts of points to wager
+    # LET'S GO GAMBLING! AH DANG IT! AH DANG IT! AH DANG IT!
+    if len(puter_word) < 9:
+        points_to_wager = 1 # ah dang it!
+        points_to_earn = 3 # i can't stop winning!
+    elif len(puter_word) >= 9:
+        points_to_wager = 2 # ah dang it! 
+        points_to_earn = 5 # i can't stop winning! 
 
     # round/point counter for the reference of the player
     time.sleep(2)
@@ -80,14 +85,12 @@ while round_count <= total_rounds:
     
     # asking if the player if they want to G A M B L E 
     if len(puter_word) > 6: 
-        awdangit = random.choice(points_to_wager)
-        icantstopwinning = random.choice(points_to_earn)
-        print(f"Want an extra hint this round for {awdangit}?") 
-        query = input(f"If you're successful, you gain {icantstopwinning} points back. y/n: ")
+        print(f"Want an extra hint this round for {points_to_wager}?") 
+        query = input(f"If you're successful, you gain {points_to_earn} points back. y/n: ")
         while query not in ["y", "n"]:
             query = input("Please enter y or n, lowercase with no spaces or punctuation: ")
         if query == "y":
-            human -= awdangit
+            human -= points_to_wager
         elif query == "n": 
             human += 0
             time.sleep(0.25)
@@ -113,7 +116,7 @@ while round_count <= total_rounds:
                 hint_use_counter += 1
                 if guessing2 == puter_word:
                     print(random.choice(human_success))
-                    human += icantstopwinning  
+                    human += points_to_earn  
                     break
                 elif hint_use_counter == 5:
                     print(f"The word was {puter_word}.")
