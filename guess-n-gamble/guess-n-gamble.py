@@ -45,7 +45,7 @@ if instruction == "y":
     time.sleep(1)
     print("===================================================================================")
     print("(This game is best played with a pencil and paper in hand.\nPlease do not look up any words. That is cheating!)")
-    print("(Input is case-sensitive, and sensitive to spaces and other characters.\nThe computer is also extremely obnoxious and I hate him.)")
+    print("(Input is case-sensitive, and sensitive to SPACES and OTHER CHARACTERS!\nThe computer is also extremely obnoxious and I hate him.)")
     print("If words are longer than a certain length, you are given the chance to gamble\n some points for an extra hint.")
     print("===================================================================================")
     time.sleep(15)
