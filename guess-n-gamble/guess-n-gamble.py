@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
-# importing those 5000 most common words
-with open('https://raw.githubusercontent.com/devildeuteragonist/word-games/refs/heads/main/guess-n-gamble/5000-common-words.txt', 'r') as f: 
-    words = f.read().splitlines() 
-
-# (importing something for a magic trick)
+# importing necessary packages
+import urllib.request
 import time
+import random
+
+# importing those 5000 most common words
+url = "https://raw.githubusercontent.com/devildeuteragonist/word-games/refs/heads/main/guess-n-gamble/5000-common-words.txt"
+with urllib.request.urlopen('url', 'r') as f: 
+    words = f.read().splitlines() 
 
 # cleaning the file of words three letters or shorter 
 our_words = [word for word in words if len(word) > 4 and len(word) < 12]
