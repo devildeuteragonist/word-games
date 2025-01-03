@@ -80,14 +80,14 @@ while round_count <= total_rounds:
         human += 2 
     else: 
         print("Ha! Try again.")
-        while hint_use_counter < 4:
+        while hint_use_counter < 5:
             input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
             hint_use_counter += 1
             if guessing == puter_word:
                 print(random.choice(human_success))
-                human += 2-(hint_use_counter*0.5)
+                human += 2-(hint_use_counter*0.25)
                 break
-            elif hint_use_counter == 4:
+            elif hint_use_counter == 5:
                 print(random.choice(computer_taunts))
                 machine += 1 
                 break
@@ -108,7 +108,6 @@ else:
 # note to self: it's not fair yet, but it's cooking. 
 # might add easter eggs, like i want it to be offended if you can push its buttons 
 # in particular ways. 
-# another note to self: maybe make the third hint random. 
 
 # another hint to self: i want the player to be able to choose different game modes, 
 # and to display this on a website (with html)
@@ -116,5 +115,3 @@ else:
 # considering maybe an easy mode, normal mode, and hard mode. 
 # also considering a timed mode. 
 # and maybe a mode where the goal is merely to reach a certain amounts of points. hmm...
-
-# maybe implement switch statements for readability 
