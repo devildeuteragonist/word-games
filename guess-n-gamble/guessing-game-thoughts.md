@@ -1,33 +1,8 @@
-# some thoughts on a theoretical word game 
+# Guess 'n' Gamble! 
+a fun (i.e. intentionally frustrating and tedious) high-stakes guessing game that was spawned in the abyss of my cruel imagination. the player (that's you!) attempts to guess the word that your opponent (an incredibly haughty and annoying computer) is thinking of. you are limited to up to three random hints per turn, unless you are willing to risk losing your well-deserved points - in other words, you can gamble away some of your earnings for *another* hint. the player is rewarded with even more points if they guess correctly, but they are punished heavily if they guess incorrectly.  
 
-## goal of the word game/about
-it's gonna be like 20 questions or charades but stupider. 
-i'm going to see if i can try to formulate some logic that would allow me to play a fun word game with the computer if i'm bored out of my mind. 
-the aim: computer 'thinks' of a word. this word is concealed from the player, but the player must guess. 
-- the computer says something like, 'i'm thinking of a word that begins with the letter c.' and then the human has to guess what that is.
-- human guess incorrectly? the computer gets a point, but it gives another letter hint. 
-- it'd basically be like wordle but with a points system: for every letter you guess correctly without help from the 'puter, you get a point; for every letter you guess incorrectly, the 'puter gets a point
-- maybe you'd have a limit on the number of rounds so that the game has a definite end and clear winner or loser at the end 
-- this is very stream of consciousness; i am too tired right now to write my thoughts in a cohesive manner 
+this project was inspired by a simple bulls-and-cows game that i programmed for class during my first year of college. i have not properly worked with python in several months, so it was at first intended to be a refresher of basic aspects of the language, but i decided that it would be fun to make my guessing game more "game-like," with a points system, more sophisticated interactivity, et cetera, et cetera. 
 
-## coding logic 
-- import a massive library of words into your coding notebook, but the words have to be easy enough to be fair in a guessing game (maybe top 1000 words in human vocabulary 3 letters or longer)
-	- the words that meet our criteria can either be sifted out through the library, or we could find a good enough library
-- computer randomly selects the word. 
-- computer provides hint: 'i'm thinking of a [length of word] letter word beginning with the letter [first letter of word]
-- player: provides input
-	- if player guesses right, or guesses a set of letters right: computer will display the spaces in the word where the player got letters right, as well as blanks for where the player did not get the right letters (kinda like hangman) 
-	- if the player guesses wrong, the computer prompts another hint  
-- for each turn the player gets something right: 1 point for each correct letter
-- for each turn the player does not get anything right: 1 point for the computer 
-- game will keep going up until player finally guesses word
-- points will be tallied
+it is not terribly complex, but i hope it is enjoyable. 
 
-yeah i'll clean this up somehow at some point soon. i'm thinking i'll write the game in python or something and it can be played directly from a colab notebook or something
-
-## update [1/1/2025]: more thoughts. 
-- **the wordgame that is actually being made is slightly different than described above maybe tomorrow i'll clean up the readme.**
-- the actual wordgame is in the process of creation. it's janky but so far challenging and fun. will ask friends to playtest it. 
-- want it to display on a web interface, as well as other word games in this repo. 
-- maybe draw a sprite for the 'computer' and compose a soundtrack or something. 
-- the wordgame would benefit MASSIVELY from a timer on the guesses. 
+if you hate the computer enough, i've also made an easy mode! i won't taunt you for taking advantage of it because i am also horrible at fighting against this monster of a program i've created. the computer will, though. 
