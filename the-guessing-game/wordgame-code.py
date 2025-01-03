@@ -84,10 +84,13 @@ while round_count <= total_rounds:
             input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
             hint_use_counter += 1
             if guessing == puter_word:
+                print(f"hint {hint_use_counter}/5")
                 print(random.choice(human_success))
                 human += 2-(hint_use_counter*0.25)
                 break
             elif hint_use_counter == 5:
+                print(f"The word was {puter_word}.")
+                time.sleep(0.25)
                 print(random.choice(computer_taunts))
                 machine += 1 
                 break
