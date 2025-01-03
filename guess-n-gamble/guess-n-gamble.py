@@ -8,7 +8,7 @@ with open('5000-common-words.txt', 'r') as f:
 import time
 
 # cleaning the file of words three letters or shorter 
-our_words = [word for word in words if len(word) > 4 and len(word) < 10]
+our_words = [word for word in words if len(word) > 4 and len(word) < 12]
     # there are brackets here so python knows we are dealing with 
     # a list. this is so we don't have to use a for loop because 
     # we are cute and smart like that. 
@@ -94,7 +94,7 @@ while round_count <= total_rounds:
             print("...")
             time.sleep(0.5)
     else:
-        print("No hints are available to gamble for words less than six letters long.")
+        print("No hints are available to gamble for words six letters long or less.")
         query = "n"
     guessing = input("Enter your guess: ")
 
