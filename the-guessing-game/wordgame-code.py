@@ -82,6 +82,7 @@ while round_count <= total_rounds:
         print("Ha! Try again.")
         while hint_use_counter < 4:
             input(f"Here's another hint. {random.choice(hints)}\n Enter your guess:")
+            hint_use_counter += 1
             if guessing == puter_word:
                 print(random.choice(human_success))
                 human += 2-(hint_use_counter*0.5)
