@@ -5,4 +5,4 @@ this project was inspired by a simple bulls-and-cows game that i programmed for 
 
 it is not terribly complex, but i hope it is enjoyable. 
 
-if you hate the computer enough, i've also made an easy mode! i won't taunt you for taking advantage of it because i am also horrible at fighting against this monster of a program i've created. the computer will, though. 
+if you hate the game enough, i've also made an easy mode! i won't taunt you for taking advantage of it because i am also horrible at fighting against this monster of a program i've created. the computer will, though. 
