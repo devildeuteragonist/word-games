@@ -22,9 +22,10 @@ robot_rizz = ["Ya think you can play against me?", "My riddles will twist your s
 machine = 0 
 human = 0          
 
-# set quantities for number of rounds
+# set quantities for number of rounds and hints
 round_count = 1      
 total_rounds = 20
+hint_use_counter = 0
 
 # instructions yes or no
 instruction = input("(This is the programmer speaking.\nDo you need instructions for The Guessing Game?) y/n: ")
@@ -41,11 +42,21 @@ if instruction == "y":
 elif instruction == "n": 
     print("(Okay. Good luck!)")
 
+# arrays of hints, also array of taunts from the computer and human success messages. 
+computer_taunts = ["It's men versus machines, baby!\nAnd I WON!", "I win, you lose. Loser."]
+human_success = ["Man. I guess you got it.", "Ugh! You got me!", 
+                 "Drat! How could you beat me!?", "You got me beat...\nBUT THAT WON'T HAPPEN AGAIN!"]
+
 # game
 while round_count <= total_rounds:
     # computer chooses a word  
     import random 
     puter_word = random.choice(our_words) 
+
+    # defining our hints 
+    hints = [f"The second letter of the word is this: {puter_word[1]}", 
+         f"The fourth letter of the word is this: {puter_word[3]}",
+         f"The third letter of the word is this: {puter_word[2]}"]
 
     # round/point counter for the reference of the player
     time.sleep(2)
@@ -61,82 +72,25 @@ while round_count <= total_rounds:
     print(f"I'm thinking of a word that is {len(puter_word)} letters long...")
     print(f"...that starts with {puter_word[0]} and ends with {puter_word[-1]}.")
     time.sleep(0.5)
-    # offer hint if the word is long 
-    if len(puter_word) > 6:
-        query = input("Want an extra hint this round for 0.5 points? y/n: ")
-        while query not in ["y", "n"]:
-            query = input("Please enter y or n, lowercase with no spaces or punctuation: ")
-        if query == "y":
-            human -= 0.5
-        elif query == "n": 
-            human += 0
-        time.sleep(0.25)
-        print("...")
-        time.sleep(0.5)
     guessing = input("Enter your guess: ")
 
-    # return whether guess was correct or incorrect
+    # subsequent guesses 
     if guessing == puter_word: 
         print("Ugh. Can't believe you managed to get me this early...")
         human += 2 
     else: 
         print("Ha! Try again.")
-        if len(puter_word) > 6:
-            print(f"So the FIRST TWO letters of the word are these: {puter_word[0:2]}")
-            guessing2 = input("Enter your guess: ")
-            print(guessing2)
-            if guessing2 == puter_word: 
-                human += 1.5
-                print("Man. I guess you got it.")
-            else: 
-                print(f"The word also contains this letter: {puter_word[3]}")
-                guessing4 = input("Enter your guess: ")
-                print(guessing4)
-                if guessing4 == puter_word: 
-                    print("Drat! How could you beat me!?")
-                    human += 1
-                elif query == "y":
-                    print(f"The word also contains this letter: {puter_word[5]}")
-                    guessing6 = input("Enter your guess: ")
-                    if guessing6 == puter_word:
-                        print("You got me beat...")
-                        time.sleep(2)
-                        print("BUT THAT WON'T HAPPEN AGAIN!")
-                        human += 1 
-                    else:
-                        print(f"The round for this game is over. The word was '{puter_word}'.")
-                        time.sleep(1)
-                        print("It's men versus machines, baby! And I WON!")
-                        machine += 1 
-                else: 
-                    print(f"This round of the game is over. The word was '{puter_word}'.")
-                    time.sleep(1)
-                    print("I win, you lose. Loser.")
-                    machine += 1 
-        elif len(puter_word) <= 6: 
-            print(f"The word also contains this letter: {puter_word[2]}")
-            guessing3 = input("Enter your guess: ")
-            print(guessing3)
-            if guessing3 == puter_word: 
-                print("You win this round...")
-                time.sleep(2)
-                print("BUT I'LL GET YOU NEXT TIME!")
-                human += 1.5
+        while hint_use_counter < 4:
+            input(f"Here's another hint. {random.choice(hints)}\n Enter your guess:")
+            if guessing == puter_word:
+                print(random.choice(human_success))
+                human += 2-(hint_use_counter*0.5)
             else:
-                print(f"The word also contains this letter: {puter_word[3]}")
-                guessing5 = input("Enter your guess: ")
-                print(guessing5)
-                if guessing5 == puter_word:
-                    print("You got me beat...")
-                    time.sleep(2)
-                    print("BUT THAT WON'T HAPPEN AGAIN!")
-                    human += 1 
-                else:
-                    print(f"The round for this game is over. The word was '{puter_word}'.")
-                    time.sleep(1)
-                    print("It's men versus machines, baby! And I WON!")
-                    machine += 1 
+                print(random.choice(computer_taunts))
+                machine += 1 
     round_count += 1
+
+# game ending 
 else: 
     print("TOTAL SCORE:")
     time.sleep(1)
