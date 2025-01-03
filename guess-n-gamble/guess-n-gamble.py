@@ -13,10 +13,19 @@ our_words = [word for word in words if len(word) > 4 and len(word) < 10]
     # a list. this is so we don't have to use a for loop because 
     # we are cute and smart like that. 
  
-# let's give our computer some...personality. 
+# let's give our computer some...personality.
+# starting message for a round 
 robot_rizz = ["Ya think you can play against me?", "My riddles will twist your squishy flesh-brain into a pretzel!",
     "You've decided to be my opponent? How daring.", "You're naive enough to think you can beat me. It sure shows, kid.",
     "Kahahaha! Beating you will be fun."]
+# responses if success or loss  
+computer_taunts = ["It's men versus machines, baby!\nAnd I WON!", "I win, you lose. Loser."]
+human_success = ["Man. I guess you got it.", "Ugh! You got me!", 
+                 "Drat! How could you beat me!?", "You got me beat...\nBUT THAT WON'T HAPPEN AGAIN!"]
+
+# LET'S GO GAMBLING! AH DANG IT! AH DANG IT! AH DANG IT!
+points_to_wager = [1, 2]
+points_to_earn = [3, 4, 5]
 
 # set the starting number of points for both human and machine
 machine = 0 
@@ -37,15 +46,11 @@ if instruction == "y":
     print("===================================================================================")
     print("(This game is best played with a pencil and paper in hand.\nPlease do not look up any words. That is cheating!)")
     print("(Input is case-sensitive, and sensitive to spaces and other characters.\nThe computer is also extremely obnoxious and I hate him.)")
+    print("If words are longer than a certain length, you are given the chance to gamble\n some points for an extra hint.")
     print("===================================================================================")
     time.sleep(15)
 elif instruction == "n": 
     print("(Okay. Good luck!)")
-
-# arrays of hints, also array of taunts from the computer and human success messages. 
-computer_taunts = ["It's men versus machines, baby!\nAnd I WON!", "I win, you lose. Loser."]
-human_success = ["Man. I guess you got it.", "Ugh! You got me!", 
-                 "Drat! How could you beat me!?", "You got me beat...\nBUT THAT WON'T HAPPEN AGAIN!"]
 
 # game
 while round_count <= total_rounds:
@@ -74,26 +79,58 @@ while round_count <= total_rounds:
     time.sleep(0.5)
     guessing = input("Enter your guess: ")
 
-    # subsequent guesses 
+    # handling subsequent guesses 
     if guessing == puter_word: 
         print("Ugh. Can't believe you managed to get me this early...")
         human += 2 
     else: 
         print("Ha! Try again.")
-        while hint_use_counter < 4:
-            print(f"hint {hint_use_counter} out of 4")
-            input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
-            hint_use_counter += 1
-            if guessing == puter_word:
-                print(random.choice(human_success))
-                human += 2-(hint_use_counter*0.25)
-                break
-            elif hint_use_counter == 4:
-                print(f"The word was {puter_word}.")
-                time.sleep(0.25)
-                print(random.choice(computer_taunts))
-                machine += 1 
-                break
+        # asking if the player if they want to G A M B L E 
+        if len(puter_word) > 6: 
+            print(f"Want an extra hint this round for {random.choice(points_to_wager)}?") 
+            query = input(f"If you're successful, you gain {random.choice(points_to_earn)} points back. y/n: ")
+            while query not in ["y", "n"]:
+                query = input("Please enter y or n, lowercase with no spaces or punctuation: ")
+            if query == "y":
+                human -= random.choice(points_to_wager)
+            elif query == "n": 
+                human += 0
+            time.sleep(0.25)
+            print("...")
+            time.sleep(0.5)
+        else:
+            print("No hints are available to gamble for words less than six letters long.")
+        # the actual subsequent-guesses-and-hint process
+        if query == "y":
+            while hint_use_counter < 5:
+                print(f"hint {hint_use_counter} out of 4")
+                input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
+                hint_use_counter += 1
+                if guessing == puter_word:
+                    print(random.choice(human_success))
+                    human += random.choice(points_to_earn)
+                    break
+                elif hint_use_counter == 5:
+                    print(f"The word was {puter_word}.")
+                    time.sleep(0.25)
+                    print(random.choice(computer_taunts))
+                    machine += 1 
+                    break
+        elif query == "n":
+            while hint_use_counter < 4:
+                print(f"hint {hint_use_counter} out of 4")
+                input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
+                hint_use_counter += 1
+                if guessing == puter_word:
+                    print(random.choice(human_success))
+                    human += 2-(hint_use_counter*0.25)
+                    break
+                elif hint_use_counter == 4:
+                    print(f"The word was {puter_word}.")
+                    time.sleep(0.25)
+                    print(random.choice(computer_taunts))
+                    machine += 1 
+                    break
     hint_use_counter = 1
     round_count += 1
 
