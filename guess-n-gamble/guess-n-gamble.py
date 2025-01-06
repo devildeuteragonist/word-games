@@ -18,6 +18,7 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 # all my code needs far more work bearing in mind i want to display it now. 
+#### I HOPE TO CLEAN THIS ALL UP ####
 
 # importing those 5000 most common words
 url = "https://raw.githubusercontent.com/devildeuteragonist/word-games/refs/heads/main/guess-n-gamble/5000-common-words.txt"
