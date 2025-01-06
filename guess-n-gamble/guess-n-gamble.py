@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
 
 # importing necessary packages
+from flask import Flask, render_template, request, session, redirect, url_for
 import urllib.request
 import time
 import random
+
+# flask gobbledygook
+app = Flask(__name__)
+app.secret_key = "funfunfun"
+
+@app.route('/')
+def index():
+    return render_template("guessngamble.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
 
 # importing those 5000 most common words
 url = "https://raw.githubusercontent.com/devildeuteragonist/word-games/refs/heads/main/guess-n-gamble/5000-common-words.txt"
