@@ -75,6 +75,9 @@ def game_round():
     if session["round_count"] > session["total_rounds"]:
         return redirect(url_for("end_game"))  
     session["puter_word"] = random.choice(words)
+while session["round_count"] <= session["total_rounds"]:
+    # computer chooses a word  
+    session["puter_word"] = random.choice(words)
 
     # defining our hints 
     hints = [f"The second letter of the word is this: {session["puter_word"][1]}", 
@@ -91,80 +94,93 @@ def game_round():
         elif len(session["puter_word"]) >= 9:
             points_to_wager = 2 # ah dang it! 
             points_to_earn = 5 # i can't stop winning! 
+    # defining our hints 
+    hints = [f"The second letter of the word is this: {session["puter_word"][1]}", 
+         f"The fourth letter of the word is this: {session["puter_word"][3]}",
+         f"The third letter of the word is this: {session["puter_word"][2]}"]
+    
+    # defining possible amounts of points to wager
+    # LET'S GO GAMBLING! AH DANG IT! AH DANG IT! AH DANG IT!
+    if len(session["puter_word"]) < 9:
+        points_to_wager = 1 # ah dang it!
+        points_to_earn = 3 # i can't stop winning!
+    elif len(session["puter_word"]) >= 9:
+        points_to_wager = 2 # ah dang it! 
+        points_to_earn = 5 # i can't stop winning! 
 
-        # round/point counter for the reference of the player
-        time.sleep(2)
-        print(f"ROUND {session["round_count"]} OF 20 STARTS")
-        time.sleep(0.5)
-        print(f"player {session["human"]} points, computer {session["machine"]} points")      
-        
-        # computer prompts YOU to guess what it's saying 
-        print(random.choice(robot_rizz))
-        time.sleep(1)
-        print("...")
-        time.sleep(0.5)
-        print(f"I'm thinking of a word that is {len(session["puter_word"])} letters long...")
-        print(f"...that starts with {session["puter_word"][0]} and ends with {session["puter_word"][-1]}.")
-        time.sleep(0.5)
-        
-        # asking if the player if they want to G A M B L E 
-        if len(session["puter_word"]) > 6: 
-            print(f"Want an extra hint this round for {points_to_wager}?") 
-            query = input(f"If you're successful, you gain {points_to_earn} points back. y/n: ")
-            while query not in ["y", "n"]:
-                query = input("Please enter y or n, lowercase with no spaces or punctuation: ")
-            if query == "y":
-                session["human"] -= points_to_wager
-            elif query == "n": 
-                session["human"] += 0
-                time.sleep(0.25)
-                print("...")
-                time.sleep(0.5)
-        else:
-            print("No hints are available to gamble for words six letters long or less.")
-            query = "n"
-        guessing = input("Enter your guess: ")
+    # round/point counter for the reference of the player
+    time.sleep(2)
+    print(f"ROUND {session["round_count"]} OF 20 STARTS")
+    time.sleep(0.5)
+    print(f"player {session["human"]} points, computer {session["machine"]} points")      
+    
+    # computer prompts YOU to guess what it's saying 
+    print(random.choice(robot_rizz))
+    time.sleep(1)
+    print("...")
+    time.sleep(0.5)
+    print(f"I'm thinking of a word that is {len(session["puter_word"])} letters long...")
+    print(f"...that starts with {session["puter_word"][0]} and ends with {session["puter_word"][-1]}.")
+    time.sleep(0.5)
+    
+    # asking if the player if they want to G A M B L E 
+    if len(session["puter_word"]) > 6: 
+        print(f"Want an extra hint this round for {points_to_wager}?") 
+        query = input(f"If you're successful, you gain {points_to_earn} points back. y/n: ")
+        while query not in ["y", "n"]:
+            query = input("Please enter y or n, lowercase with no spaces or punctuation: ")
+        if query == "y":
+            session["human"] -= points_to_wager
+        elif query == "n": 
+            session["human"] += 0
+            time.sleep(0.25)
+            print("...")
+            time.sleep(0.5)
+    else:
+        print("No hints are available to gamble for words six letters long or less.")
+        query = "n"
+    guessing = input("Enter your guess: ")
 
 
-        # handling subsequent guesses 
-        if guessing == session["puter_word"]: 
-            print("Ugh. Can't believe you managed to get me this early...")
-            session["human"] += 2 
-        else: 
-            print("Ha! Try again.")
-            # the actual subsequent-guesses-and-hint process
-            if query == "y":
-                while hint_use_counter < 5:
-                    print(f"hint {hint_use_counter} out of 4")
-                    guessing2 = input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
-                    hint_use_counter += 1
-                    if guessing2 == session["puter_word"]:
-                        print(random.choice(human_success))
-                        session["human"] += points_to_earn  
-                        break
-                    elif hint_use_counter == 5:
-                        print(f"The word was {session["puter_word"]}.")
-                        time.sleep(0.25)
-                        print(random.choice(computer_taunts))
-                        session["machine"] += 1 
-                        break
-            elif query == "n":
-                while hint_use_counter < 4:
-                    print(f"hint {hint_use_counter} out of 3")
-                    guessing2 = input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
-                    hint_use_counter += 1
-                    if guessing2 == session["puter_word"]:
-                        print(random.choice(human_success))
-                        session["human"] += 2-(hint_use_counter*0.25)
-                        break
-                    elif hint_use_counter == 4:
-                        print(f"The word was {session["puter_word"]}.")
-                        time.sleep(0.25)
-                        print(random.choice(computer_taunts))
-                        session["machine"] += 1 
-                        break
-        hint_use_counter = 1
-        session["round_count"] += 1
+    # handling subsequent guesses 
+    if guessing == session["puter_word"]: 
+        print("Ugh. Can't believe you managed to get me this early...")
+        session["human"] += 2 
+    else: 
+        print("Ha! Try again.")
+        # the actual subsequent-guesses-and-hint process
+        if query == "y":
+            while hint_use_counter < 5:
+                print(f"hint {hint_use_counter} out of 4")
+                guessing2 = input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
+                hint_use_counter += 1
+                if guessing2 == session["puter_word"]:
+                    print(random.choice(human_success))
+                    session["human"] += points_to_earn  
+                    break
+                elif hint_use_counter == 5:
+                    print(f"The word was {session["puter_word"]}.")
+                    time.sleep(0.25)
+                    print(random.choice(computer_taunts))
+                    session["machine"] += 1 
+                    break
+        elif query == "n":
+            while hint_use_counter < 4:
+                print(f"hint {hint_use_counter} out of 3")
+                guessing2 = input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
+                hint_use_counter += 1
+                if guessing2 == session["puter_word"]:
+                    print(random.choice(human_success))
+                    session["human"] += 2-(hint_use_counter*0.25)
+                    break
+                elif hint_use_counter == 4:
+                    print(f"The word was {session["puter_word"]}.")
+                    time.sleep(0.25)
+                    print(random.choice(computer_taunts))
+                    session["machine"] += 1 
+                    break
+    hint_use_counter = 1
+    session["round_count"] += 1
 
 
     # game ending 
@@ -183,9 +199,24 @@ def end_game():
     # note to self: it's not fair yet, but it's cooking. 
     # might add easter eggs, like i want it to be offended if you can push its buttons 
     # in particular ways. 
+# game ending 
+else: 
+    print("TOTAL SCORE:")
+    time.sleep(1)
+    print(f"computer: {session["machine"]}")
+    print(f"player: {session["human"]}")
+    if session["machine"] > session["human"]:
+        print("HAHAHAHAHAHAHAHAHAHAHAHAHAH I WIN!!!!!!! YOU SUCK!!!!!! GAME OVERRRRRR!!")
+    elif session["human"] > session["machine"]: 
+        print("Ugh...you win. Darn...Never realised it would come to this...")
+    elif session["human"] == session["machine"]:
+        print("Tie?!?! But I was this close! THIS close!")
+# note to self: it's not fair yet, but it's cooking. 
+# might add easter eggs, like i want it to be offended if you can push its buttons 
+# in particular ways. 
 
-    # another hint to self: i want the player to be able to choose different game modes, 
-    # and to display this on a website (with html)
+# another hint to self: i want the player to be able to choose different game modes, 
+# and to display this on a website (with html)
 
     # considering maybe an easy mode, normal mode, and hard mode. 
     # also considering a timed mode. 
