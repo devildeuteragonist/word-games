@@ -72,6 +72,8 @@ elif instruction == "n":
 # game
 @app.route('/game_round', methods=['GET', 'POST'])
 def game_round():
+    if session["round_count"] > session["total_rounds"]:
+        return redirect(url_for("end_game"))
     while session["round_count"] <= session["total_rounds"]:
         # computer chooses a word  
         session["puter_word"] = random.choice(words)
@@ -168,19 +170,18 @@ def game_round():
 
 
     # game ending 
-    else: 
-        @app.route('/end_game')
-        def end_game():
-            print("TOTAL SCORE:")
-            time.sleep(1)
-            print(f"computer: {session["machine"]}")
-            print(f"player: {session["human"]}")
-            if session["machine"] > session["human"]:
-                print("HAHAHAHAHAHAHAHAHAHAHAHAHAH I WIN!!!!!!! YOU SUCK!!!!!! GAME OVERRRRRR!!")
-            elif session["human"] > session["machine"]: 
-                print("Ugh...you win. Darn...Never realised it would come to this...")
-            elif session["human"] == session["machine"]:
-                print("Tie?!?! But I was this close! THIS close!")
+    @app.route('/end_game')
+    def end_game():
+        print("TOTAL SCORE:")
+        time.sleep(1)
+        print(f"computer: {session["machine"]}")
+        print(f"player: {session["human"]}")
+        if session["machine"] > session["human"]:
+            print("HAHAHAHAHAHAHAHAHAHAHAHAHAH I WIN!!!!!!! YOU SUCK!!!!!! GAME OVERRRRRR!!")
+        elif session["human"] > session["machine"]: 
+            print("Ugh...you win. Darn...Never realised it would come to this...")
+        elif session["human"] == session["machine"]:
+            print("Tie?!?! But I was this close! THIS close!")
     # note to self: it's not fair yet, but it's cooking. 
     # might add easter eggs, like i want it to be offended if you can push its buttons 
     # in particular ways. 
@@ -191,3 +192,11 @@ def game_round():
     # considering maybe an easy mode, normal mode, and hard mode. 
     # also considering a timed mode. 
     # and maybe a mode where the goal is merely to reach a certain amounts of points. hmm...
+
+#### ISSUES #### 
+# each part of the game needs to be handled by a flask route (starting, playing rounds, displaying hints etc)
+# /start is the start, /round is the game round, /end initialises results 
+# flask needs to be able to handle page refreshes and update properly. 
+# manage rounds
+# html forms or buttons
+# jinja html templates 
