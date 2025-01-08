@@ -74,8 +74,7 @@ elif instruction == "n":
 def game_round():
     if session["round_count"] > session["total_rounds"]:
         return redirect(url_for("end_game"))  
-    session["puter_word"] = random.choice(words)
-while session["round_count"] <= session["total_rounds"]:
+    
     # computer chooses a word  
     session["puter_word"] = random.choice(words)
 
@@ -196,21 +195,9 @@ def end_game():
         print("Ugh...you win. Darn...Never realised it would come to this...")
     elif session["human"] == session["machine"]:
         print("Tie?!?! But I was this close! THIS close!")
-    # note to self: it's not fair yet, but it's cooking. 
-    # might add easter eggs, like i want it to be offended if you can push its buttons 
-    # in particular ways. 
-# game ending 
-else: 
-    print("TOTAL SCORE:")
-    time.sleep(1)
-    print(f"computer: {session["machine"]}")
-    print(f"player: {session["human"]}")
-    if session["machine"] > session["human"]:
-        print("HAHAHAHAHAHAHAHAHAHAHAHAHAH I WIN!!!!!!! YOU SUCK!!!!!! GAME OVERRRRRR!!")
-    elif session["human"] > session["machine"]: 
-        print("Ugh...you win. Darn...Never realised it would come to this...")
-    elif session["human"] == session["machine"]:
-        print("Tie?!?! But I was this close! THIS close!")
+
+
+
 # note to self: it's not fair yet, but it's cooking. 
 # might add easter eggs, like i want it to be offended if you can push its buttons 
 # in particular ways. 
@@ -228,4 +215,4 @@ else:
 # flask needs to be able to handle page refreshes and update properly. 
 # manage rounds
 # html forms or buttons
-# jinja html templates 
+# jinja html templates
