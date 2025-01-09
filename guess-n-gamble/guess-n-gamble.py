@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+
+# IM APPARENTLY USING MY GITHUB CODESPACES LIMIT REALLY REALLY QUICKLY SO I'M JUST GONNA HAVE TO MODIFY THIS LOCALLY NOW. 
+
 # importing necessary packages
 from flask import Flask, render_template, request, session, redirect, url_for
 import urllib.request
@@ -14,11 +17,28 @@ app.secret_key = "funfunfun"
 def index():
     return render_template("guessngamble.html")
 
+'''
+this is where the instructions (listed below) will go, but on the html website. 
+# instructions yes or no
+instruction = input("(This is the programmer speaking.\nDo you need instructions for The Guessing Game?) y/n: ")
+while instruction not in ["y", "n"]:
+    instruction = input("Please enter y or n, lowercase with no spaces or punctuation: ")
+if instruction == "y":
+    print("(You are given 15 seconds to read the following instructions\nbefore the game starts:)")
+    time.sleep(1)
+    print("===================================================================================")
+    print("(This game is best played with a pencil and paper in hand.\nPlease do not look up any words. That is cheating!)")
+    print("(Input is case-sensitive, and sensitive to SPACES and OTHER CHARACTERS!\nThe computer is also extremely obnoxious and I hate him.)")
+    print("Sometimes, you are given the chance to gamble some points for an extra hint.")
+    print("As you use more hints in a round, the points you earn back are reduced if you succeed.\nPoints earned back from wagering are protected from this.")
+    print("===================================================================================")
+    time.sleep(15)
+elif instruction == "n": 
+    print("(Okay. Good luck!)")
+'''
+
 if __name__ == "__main__":
     app.run(debug=True)
-
-# all my code needs far more work bearing in mind i want to display it now. 
-#### I HOPE TO CLEAN THIS ALL UP ####
 
 # importing those 5000 most common words
 url = "https://raw.githubusercontent.com/devildeuteragonist/word-games/refs/heads/main/guess-n-gamble/5000-common-words.txt"
@@ -51,23 +71,18 @@ def start_game():
     session["round_count"] = 1      
     session["total_rounds"] = 20
     session["hint_use_counter"] = 1
+# redirect code to actual game  
+    return redirect(url_for('game_round'))
 
-# instructions yes or no
-instruction = input("(This is the programmer speaking.\nDo you need instructions for The Guessing Game?) y/n: ")
-while instruction not in ["y", "n"]:
-    instruction = input("Please enter y or n, lowercase with no spaces or punctuation: ")
-if instruction == "y":
-    print("(You are given 15 seconds to read the following instructions\nbefore the game starts:)")
-    time.sleep(1)
-    print("===================================================================================")
-    print("(This game is best played with a pencil and paper in hand.\nPlease do not look up any words. That is cheating!)")
-    print("(Input is case-sensitive, and sensitive to SPACES and OTHER CHARACTERS!\nThe computer is also extremely obnoxious and I hate him.)")
-    print("Sometimes, you are given the chance to gamble some points for an extra hint.")
-    print("As you use more hints in a round, the points you earn back are reduced if you succeed.\nPoints earned back from wagering are protected from this.")
-    print("===================================================================================")
-    time.sleep(15)
-elif instruction == "n": 
-    print("(Okay. Good luck!)")
+
+# creating function to define hints (jazakhallah khair chatgpt)
+def generate_hints(chosen_word):
+    return [
+        f"The second letter of the word is this: {chosen_word[1]}", 
+        f"The third letter of the word is this: {chosen_word[2]}", 
+        f"The fourth letter of the word is this: {chosen_word[3]}"
+    ]
+
 
 # game
 @app.route('/game_round', methods=['GET', 'POST'])
@@ -77,11 +92,8 @@ def game_round():
     
     # computer chooses a word  
     session["puter_word"] = random.choice(words)
+    hints = generate_hints(session["puter_word"])
 
-    # defining our hints 
-    hints = [f"The second letter of the word is this: {session["puter_word"][1]}", 
-        f"The fourth letter of the word is this: {session["puter_word"][3]}",
-        f"The third letter of the word is this: {session["puter_word"][2]}"]
     if request.method == 'POST':
         user_guess = request.form['guess']
 
