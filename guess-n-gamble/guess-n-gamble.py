@@ -83,7 +83,6 @@ def generate_hints(chosen_word):
         f"The fourth letter of the word is this: {chosen_word[3]}"
     ]
 
-
 # game
 @app.route('/game_round', methods=['GET', 'POST'])
 def game_round():
@@ -92,26 +91,9 @@ def game_round():
     
     # computer chooses a word  
     session["puter_word"] = random.choice(words)
-    hints = generate_hints(session["puter_word"])
-
-    if request.method == 'POST':
-        user_guess = request.form['guess']
-
-        # defining possible amounts of points to wager
-        # LET'S GO GAMBLING! AH DANG IT! AH DANG IT! AH DANG IT!
-        if len(session["puter_word"]) < 9:
-            points_to_wager = 1 # ah dang it!
-            points_to_earn = 3 # i can't stop winning!
-        elif len(session["puter_word"]) >= 9:
-            points_to_wager = 2 # ah dang it! 
-            points_to_earn = 5 # i can't stop winning! 
     # defining our hints 
-    hints = [f"The second letter of the word is this: {session["puter_word"][1]}", 
-         f"The fourth letter of the word is this: {session["puter_word"][3]}",
-         f"The third letter of the word is this: {session["puter_word"][2]}"]
-    
-    # defining possible amounts of points to wager
-    # LET'S GO GAMBLING! AH DANG IT! AH DANG IT! AH DANG IT!
+    hints = generate_hints(session["puter_word"])
+    # defining possible amounts of points to wager 
     if len(session["puter_word"]) < 9:
         points_to_wager = 1 # ah dang it!
         points_to_earn = 3 # i can't stop winning!
@@ -119,13 +101,20 @@ def game_round():
         points_to_wager = 2 # ah dang it! 
         points_to_earn = 5 # i can't stop winning! 
 
+    if request.method == 'POST':
+        user_guess = request.form['guess']
+
+    '''
+    ALL OF THIS BELOW WILL ACTUALLY BE ON OUR HTML DOCUMENT. 
     # round/point counter for the reference of the player
     time.sleep(2)
     print(f"ROUND {session["round_count"]} OF 20 STARTS")
     time.sleep(0.5)
-    print(f"player {session["human"]} points, computer {session["machine"]} points")      
+    print(f"player {session["human"]} points, computer {session["machine"]} points")  
+    '''    
     
-    # computer prompts YOU to guess what it's saying 
+    '''
+    # computer prompts YOU to guess what it's saying. in the final code, none of these will be printed.  
     print(random.choice(robot_rizz))
     time.sleep(1)
     print("...")
@@ -133,23 +122,22 @@ def game_round():
     print(f"I'm thinking of a word that is {len(session["puter_word"])} letters long...")
     print(f"...that starts with {session["puter_word"][0]} and ends with {session["puter_word"][-1]}.")
     time.sleep(0.5)
+    '''
     
-    # asking if the player if they want to G A M B L E 
+    # asking if the player if they want to G A M B L E. in the final code, none of these will be printed. 
     if len(session["puter_word"]) > 6: 
-        print(f"Want an extra hint this round for {points_to_wager}?") 
-        query = input(f"If you're successful, you gain {points_to_earn} points back. y/n: ")
-        while query not in ["y", "n"]:
-            query = input("Please enter y or n, lowercase with no spaces or punctuation: ")
-        if query == "y":
+        '''print(f"Want an extra hint this round for {points_to_wager}?") '''
+        wager_answer = request.form['wager_answer']
+        '''query = input(f"If you're successful, you gain {points_to_earn} points back. y/n: ")'''
+        while wager_answer not in ["y", "n"]:
+            '''query = input("Please enter y or n, lowercase with no spaces or punctuation: ")'''
+        if wager_answer == "y":
             session["human"] -= points_to_wager
-        elif query == "n": 
+        elif wager_answer == "n": 
             session["human"] += 0
-            time.sleep(0.25)
-            print("...")
-            time.sleep(0.5)
     else:
-        print("No hints are available to gamble for words six letters long or less.")
-        query = "n"
+        '''print("No hints are available to gamble for words six letters long or less.")'''
+        wager_answer == "n"
     guessing = input("Enter your guess: ")
 
 
@@ -160,7 +148,7 @@ def game_round():
     else: 
         print("Ha! Try again.")
         # the actual subsequent-guesses-and-hint process
-        if query == "y":
+        if wager_answer == "y":
             while hint_use_counter < 5:
                 print(f"hint {hint_use_counter} out of 4")
                 guessing2 = input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
@@ -175,7 +163,7 @@ def game_round():
                     print(random.choice(computer_taunts))
                     session["machine"] += 1 
                     break
-        elif query == "n":
+        elif wager_answer == "n":
             while hint_use_counter < 4:
                 print(f"hint {hint_use_counter} out of 3")
                 guessing2 = input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")
@@ -223,6 +211,11 @@ def end_game():
 
 #### ISSUES #### 
 # each part of the game needs to be handled by a flask route (starting, playing rounds, displaying hints etc)
+# /start is the start, /round is the game round, /end initialises results 
+# flask needs to be able to handle page refreshes and update properly. 
+# manage rounds
+# html forms or buttons
+# jinja html templates
 # /start is the start, /round is the game round, /end initialises results 
 # flask needs to be able to handle page refreshes and update properly. 
 # manage rounds
