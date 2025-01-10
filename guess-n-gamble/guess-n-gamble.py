@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 
 
+### NEEDS SIGNIFICANT WORK ###
+### NEEDS SIGNIFICANT WORK ###
+### NEEDS SIGNIFICANT WORK ###
+
+### STRINGS BETWEEN THE TRIPLE QUOTES NEED TO TURN INTO SOMETHING THAT CAN BE DISPLAYED ###
+
 # IM APPARENTLY USING MY GITHUB CODESPACES LIMIT REALLY REALLY QUICKLY SO I'M JUST GONNA HAVE TO MODIFY THIS LOCALLY NOW. 
 
 # importing necessary packages
@@ -70,7 +76,7 @@ def start_game():
 # setting quantities for number of rounds and hints
     session["round_count"] = 1      
     session["total_rounds"] = 20
-    session["hint_use_counter"] = 1
+    session["hint_use_counter"] = 0
 # redirect code to actual game  
     return redirect(url_for('game_round'))
 
@@ -144,45 +150,42 @@ def game_round():
 
     # handling subsequent guesses 
     if user_guess == session["puter_word"]: 
-        '''print("Ugh. Can't believe you managed to get me this early...")'''
-        session["human"] += 2 
+        session["human"] += 2
+        return render_template("game_round.html", message="Ugh. Can't believe you managed to get me this early...") 
     else: 
-        '''print("Ha! Try again.")'''
         # the actual subsequent-guesses-and-hint process
         if wager_answer == "y":
             while hint_use_counter < 5:
-                '''print(f"hint {hint_use_counter} out of 4")'''
-                '''input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")'''
+                # thank you chatgpt for showing me how to do the render_template thing not seven million times
+                hint_message = f"Hint {hint_use_counter + 1} out of 4: {random.choice(hints)}\n Enter your guess:" if hint_use_counter < 4 else "No more hints available."
                 user_guess_2 = request.form["user_guess_2"]
                 hint_use_counter += 1
                 if user_guess_2 == session["puter_word"]:
-                    '''print(random.choice(human_success))'''
-                    session["human"] += points_to_earn  
-                    break
+                    session["human"] += points_to_earn 
+                    return render_template("game_round.html", message=random.choice(human_success))  
                 elif hint_use_counter == 5:
-                    '''print(f"The word was {session["puter_word"]}.")
-                    time.sleep(0.25)
-                    print(random.choice(computer_taunts))'''
                     session["machine"] += 1 
-                    break
+                    return render_template("game_round.html", message=f"The word was {session["puter_word"]}.\n{random.choice(computer_taunts)}")
         elif wager_answer == "n":
             while hint_use_counter < 4:
-                '''print(f"hint {hint_use_counter} out of 3")'''
-                '''input(f"Here's a hint. {random.choice(hints)}\n Enter your guess:")'''
+                hint_message = f"Hint {hint_use_counter + 1} out of 3: {random.choice(hints)}\n Enter your guess:" if hint_use_counter < 3 else "No more hints available."
                 user_guess_2 = request.form["user_guess_2"]
                 hint_use_counter += 1
                 if user_guess_2 == session["puter_word"]:
-                    '''print(random.choice(human_success))'''
                     session["human"] += 2-(hint_use_counter*0.25)
-                    break
+                    return render_template("game_round.html", message=random.choice(human_success), word=session["puter_word"], round=session["round_count"], human=session["human"], machine=session["machine"])
                 elif hint_use_counter == 4:
-                    '''print(f"The word was {session["puter_word"]}.")
-                    time.sleep(0.25)
-                    print(random.choice(computer_taunts))'''
                     session["machine"] += 1 
-                    break
+                    return render_template("game_round.html", message=f"The word was {session["puter_word"]}.\n{random.choice(computer_taunts)}")
     hint_use_counter = 1
     session["round_count"] += 1
+    return render_template("game_round.html", 
+    message=hint_message, 
+    round=session["round_count"], 
+    hint_use_counter=hint_use_counter, 
+    human=session["human"], 
+    machine=session["machine"]
+    )
 
 
     # game ending 
