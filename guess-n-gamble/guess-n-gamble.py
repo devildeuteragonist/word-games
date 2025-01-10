@@ -5,8 +5,6 @@
 ### NEEDS SIGNIFICANT WORK ###
 ### NEEDS SIGNIFICANT WORK ###
 
-### STRINGS BETWEEN THE TRIPLE QUOTES NEED TO TURN INTO SOMETHING THAT CAN BE DISPLAYED ###
-
 # IM APPARENTLY USING MY GITHUB CODESPACES LIMIT REALLY REALLY QUICKLY SO I'M JUST GONNA HAVE TO MODIFY THIS LOCALLY NOW. 
 
 # importing necessary packages
@@ -19,29 +17,17 @@ import random
 app = Flask(__name__)
 app.secret_key = "funfunfun"
 
-@app.route('/')
+@app.route("/")
 def index():
-    return render_template("guessngamble.html")
-
-'''
-this is where the instructions (listed below) will go, but on the html website. 
-# instructions yes or no
-instruction = input("(This is the programmer speaking.\nDo you need instructions for The Guessing Game?) y/n: ")
-while instruction not in ["y", "n"]:
-    instruction = input("Please enter y or n, lowercase with no spaces or punctuation: ")
-if instruction == "y":
-    print("(You are given 15 seconds to read the following instructions\nbefore the game starts:)")
-    time.sleep(1)
-    print("===================================================================================")
-    print("(This game is best played with a pencil and paper in hand.\nPlease do not look up any words. That is cheating!)")
-    print("(Input is case-sensitive, and sensitive to SPACES and OTHER CHARACTERS!\nThe computer is also extremely obnoxious and I hate him.)")
-    print("Sometimes, you are given the chance to gamble some points for an extra hint.")
-    print("As you use more hints in a round, the points you earn back are reduced if you succeed.\nPoints earned back from wagering are protected from this.")
-    print("===================================================================================")
-    time.sleep(15)
-elif instruction == "n": 
-    print("(Okay. Good luck!)")
-'''
+    initial_message = "(This is the programmer speaking.\nDo you need instructions for The Guessing Game?) y/n: "
+    instruction_answer = request.form["instruction_answer"]
+    while instruction not in ["y", "n"]:
+        instruction = input("Please enter y or n, lowercase with no spaces or punctuation: ")
+    if instruction_answer == "y":
+        render_template("instructions.html")
+    elif instruction_answer == "n":
+        render_template("index.html", message="Okay. Good luck!") # this is WRONG 
+# instructions yes or no, error handling not done well up here. ^ 
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -67,6 +53,8 @@ computer_taunts = ["It's men versus machines, baby!\nAnd I WON!", "I win, you lo
 human_success = ["Man. I guess you got it.", "Ugh! You got me!", 
                  "Drat! How could you beat me!?", "You got me beat...\nBUT THAT WON'T HAPPEN AGAIN!"]
 
+@app.route("/instructions")
+# this needs work. and buttons. 
 
 @app.route("/start", methods=["POST"])
 def start_game():
@@ -131,19 +119,33 @@ def game_round():
     
     # asking if the player if they want to G A M B L E. in the final code, none of these will be printed. 
     if len(session["puter_word"]) > 6: 
-        '''print(f"Want an extra hint this round for {points_to_wager}?") '''
+        wager_message_1 = f"Want an extra hint this round for {points_to_wager}?\nIf you're successful, you gain {points_to_earn} points back. y/n:"
         wager_answer = request.form["wager_answer"]
-        '''query = input(f"If you're successful, you gain {points_to_earn} points back. y/n: ")'''
         while wager_answer not in ["y", "n"]:
-            '''query = input("Please enter y or n, lowercase with no spaces or punctuation: ")'''
+            wager_message_2 = "Please enter y or n, lowercase with no spaces or punctuation: "
+            wager_answer = request.form["wager_answer"]
+            return render_template("game_round.html", 
+            message=wager_message_2, 
+            round=session["round_count"], 
+            human=session["human"], 
+            machine=session["machine"]
+            )  
         if wager_answer == "y":
             session["human"] -= points_to_wager
         elif wager_answer == "n": 
             session["human"] += 0
     else:
-        '''print("No hints are available to gamble for words six letters long or less.")'''
-        wager_answer == "n"
-    
+        wager_message_2 = "No hints are available to gamble for words six letters long or less."
+        session["human"] += 0
+        return render_template("game_round.html", 
+        message=wager_message_2, 
+        round=session["round_count"], 
+        human=session["human"], 
+        machine=session["machine"]
+        )  
+
+    # we'd need to clear the page and then load new stuff happening on the page maybe. 
+
     # initial guess 
     if request.method == 'POST':
         user_guess = request.form["user_guess"]
@@ -188,16 +190,14 @@ def game_round():
     )
 
 
-    # game ending 
+# game ending 
 @app.route('/end_game')
 def end_game():
-    '''print("TOTAL SCORE:")
-    time.sleep(1)
-    print(f"computer: {session["machine"]}")
-    print(f"player: {session["human"]}")'''
+    scores = f"computer: {session["machine"]}\nplayer: {session["human"]}"
     if session["machine"] > session["human"]:
-        '''print("HAHAHAHAHAHAHAHAHAHAHAHAHAH I WIN!!!!!!! YOU SUCK!!!!!! GAME OVERRRRRR!!")'''
+        end_message = "HAHAHAHAHAHAHAHAHAHAHAHAHAH I WIN!!!!!!! YOU SUCK!!!!!! GAME OVERRRRRR!!"
     elif session["human"] > session["machine"]: 
-        '''print("Ugh...you win. Darn...Never realised it would come to this...")'''
+        end_message = "Ugh...you win. Darn...Never realised it would come to this..."
     elif session["human"] == session["machine"]:
-        '''print("Tie?!?! But I was this close! THIS close!")'''
+        end_message = "Tie?!?! But I was this close! THIS close!"
+    return render_template("end_game.html", message=(scores + end_message))
