@@ -16,7 +16,7 @@ import random
 # flask gobbledygook
 app = Flask(__name__)
 app.secret_key = "2ykrj6ujukgwe8kvbvxssmffxty9j9"
-app.run(host='127.0.0.1', debug=True)
+app.run(host='0.0.0.0', debug=True)
 
 @app.route("/", methods=["GET","POST"])
 def index():
