@@ -23,9 +23,9 @@ def index():
     while instruction not in ["y", "n"]:
         instruction = input("Please enter y or n, lowercase with no spaces or punctuation: ")
     if instruction_answer == "y":
-        render_template("instructions.html")
+        return render_template("instructions.html")
     elif instruction_answer == "n":
-        render_template("index.html", message="Okay. Good luck!") # this is WRONG 
+        return render_template("index.html", message="Okay. Good luck!") # this is WRONG 
 # instructions yes or no, error handling not done well up here. ^ 
 
 if __name__ == "__main__":
