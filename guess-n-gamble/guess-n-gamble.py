@@ -18,7 +18,7 @@ app = Flask(__name__)
 app.secret_key = "2ykrj6ujukgwe8kvbvxssmffxty9j9"
 app.run(host='127.0.0.1', debug=True)
 
-@app.route("/")
+@app.route("/", methods=["GET","POST"])
 def index():
     instruction_answer = request.form["instruction_answer"]
     while instruction_answer not in ["y", "n"]:
@@ -55,10 +55,10 @@ computer_taunts = ["It's men versus machines, baby!\nAnd I WON!", "I win, you lo
 human_success = ["Man. I guess you got it.", "Ugh! You got me!", 
                  "Drat! How could you beat me!?", "You got me beat...\nBUT THAT WON'T HAPPEN AGAIN!"]
 
-@app.route("/instructions")
+@app.route("/instructions", methods=["GET", "POST"])
 # this needs work. and buttons. 
 
-@app.route("/start", methods=["POST"])
+@app.route("/start", methods=["GET","POST"])
 def start_game():
 # setting the starting number of points for both human and machine
     session["machine"] = 0 
