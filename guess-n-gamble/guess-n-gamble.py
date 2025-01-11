@@ -20,7 +20,7 @@ app.run(host='0.0.0.0', debug=True)
 
 @app.route("/", methods=["GET","POST"])
 def index():
-    instruction_answer = request.form["instruction_answer"]
+    instruction_answer = request.form.get("instruction_answer", "")
     while instruction_answer not in ["y", "n"]:
         instruction_message = "Please enter y or n, lowercase with no spaces or punctuation:\n"
         instruction_answer = request.form["instruction_answer"]
