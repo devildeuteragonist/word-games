@@ -10,8 +10,11 @@
     <p>Round: {{ round }}</p>
     <p>Player: {{ human }} points</p>
     <p>Computer: {{ machine }} points</p>
-    <form action="/start" method="POST">
-        <button type="submit">Start Game</button>
+    <p>Psst. It's me, the programmer. Would you like to view the game instructions?</p>
+    <form method="POST">
+        <label for="instruction_answer">y/n:</label>
+        <input type="text" name="instruction_answer" id="instruction_answer" required>
+        <button type="submit">Submit</button>
     </form>
 </body>
 </html>
