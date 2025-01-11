@@ -21,7 +21,7 @@ app.run(host='0.0.0.0')
 @app.route("/")
 def index():
     instruction_answer = request.form["instruction_answer"]
-    while instruction not in ["y", "n"]:
+    while instruction_answer not in ["y", "n"]:
         instruction_message = "Please enter y or n, lowercase with no spaces or punctuation:\n"
         instruction_answer = request.form["instruction_answer"]
         return render_template("game_round.html", 
