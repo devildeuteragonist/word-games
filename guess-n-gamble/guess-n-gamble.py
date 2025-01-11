@@ -16,18 +16,21 @@ import random
 # flask gobbledygook
 app = Flask(__name__)
 app.secret_key = "funfunfun"
+app.run(host='0.0.0.0')
 
 @app.route("/")
 def index():
     instruction_answer = request.form["instruction_answer"]
     while instruction not in ["y", "n"]:
-        instruction = input("Please enter y or n, lowercase with no spaces or punctuation: ")
+        instruction_message = "Please enter y or n, lowercase with no spaces or punctuation:\n"
+        instruction_answer = request.form["instruction_answer"]
+        return render_template("game_round.html", 
+        message=instruction_message)  
     if instruction_answer == "y":
-        render_template("instructions.html")
+        return render_template("instructions.html")
     elif instruction_answer == "n":
-        render_template("index.html", message="Okay. Good luck!") # this is WRONG 
-# instructions yes or no, error handling not done well up here. ^ 
-
+        return render_template("index.html", message="Okay. Good luck!")
+        
 if __name__ == "__main__":
     app.run(debug=True)
 
