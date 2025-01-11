@@ -19,7 +19,6 @@ app.secret_key = "funfunfun"
 
 @app.route("/")
 def index():
-    initial_message = "(This is the programmer speaking.\nDo you need instructions for The Guessing Game?) y/n: "
     instruction_answer = request.form["instruction_answer"]
     while instruction not in ["y", "n"]:
         instruction = input("Please enter y or n, lowercase with no spaces or punctuation: ")
