@@ -94,6 +94,15 @@ def game_round():
         points_to_wager = 2 # ah dang it! 
         points_to_earn = 5 # i can't stop winning! 
 
+    '''
+    ALL OF THIS BELOW WILL ACTUALLY BE ON OUR HTML DOCUMENT. 
+    # round/point counter for the reference of the player
+    time.sleep(2)
+    print(f"ROUND {session["round_count"]} OF 20 STARTS")
+    time.sleep(0.5)
+    print(f"player {session["human"]} points, computer {session["machine"]} points")  
+    '''    
+
     # below is the initial hint (the start and end letters of the word and its length)
     # it is to be printed before the player makes their first guess. 
     '''
@@ -108,7 +117,6 @@ def game_round():
     '''
     
     # asking if the player if they want to G A M B L E. in the final code, none of these will be printed. 
-    # do we have a separate route for this? 
     if len(session["puter_word"]) > 6: 
         wager_message_1 = f"Want an extra hint this round for {points_to_wager}?\nIf you're successful, you gain {points_to_earn} points back. y/n:"
         wager_answer = request.form["wager_answer"]
@@ -179,3 +187,16 @@ def game_round():
     human=session["human"], 
     machine=session["machine"]
     )
+
+
+# game ending 
+@app.route('/end_game')
+def end_game():
+    scores = f"computer: {session["machine"]}\nplayer: {session["human"]}"
+    if session["machine"] > session["human"]:
+        end_message = "HAHAHAHAHAHAHAHAHAHAHAHAHAH I WIN!!!!!!! YOU SUCK!!!!!! GAME OVERRRRRR!!"
+    elif session["human"] > session["machine"]: 
+        end_message = "Ugh...you win. Darn...Never realised it would come to this..."
+    elif session["human"] == session["machine"]:
+        end_message = "Tie?!?! But I was this close! THIS close!"
+    return render_template("end_game.html", message=(scores + end_message))

@@ -1,0 +1,20 @@
+### copying chatgpt's suggestions for now ### 
+### will modify as i wish ### 
+{% extends "base.html" %}
+
+{% block title %}Game Over{% endblock %}
+
+{% block content %}
+    <h2>Game Over!</h2>
+    <p>Final Scores:</p>
+    <p>Player: {{ human }}</p>
+    <p>Computer: {{ machine }}</p>
+
+    {% if human > machine %}
+        <p>You won! Congratulations!</p>
+    {% elif human < machine %}
+        <p>The computer won. Better luck next time!</p>
+    {% else %}
+        <p>It's a tie!</p>
+    {% endif %}
+{% endblock %}

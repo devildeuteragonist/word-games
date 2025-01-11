@@ -1,0 +1,21 @@
+### BELOW IS SIMPLY SOMETHING CHATGPT ADVISED ME TO USE, ### 
+#### IT IS A DRAFT AND I WILL BE MODIFYING IT AS I WISH. JUST PUTTING IT HERE TO REFERENCE IT ###
+{% extends "base.html" %}
+
+{% block title %}Game Round{% endblock %}
+
+{% block content %}
+    <h2>Round {{ round }}</h2>
+    <p>Player Score: {{ human }}</p>
+    <p>Computer Score: {{ machine }}</p>
+
+    <form method="POST">
+        <label for="user_guess">Enter your guess:</label>
+        <input type="text" name="user_guess" id="user_guess" required>
+        <button type="submit">Submit Guess</button>
+    </form>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+{% endblock %}
