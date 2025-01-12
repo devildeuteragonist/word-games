@@ -1,8 +1,5 @@
 # importing necessary packages
 from flask import Flask, render_template, request, session, redirect, url_for
-import urllib.request
-import time
-import random
 
 # flask gobbledygook
 app = Flask(__name__)
