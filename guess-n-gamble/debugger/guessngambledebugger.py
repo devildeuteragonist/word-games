@@ -15,16 +15,17 @@ def index():
         while instruction_answer not in ["y", "n"]:
             instruction_message = "Please enter y or n, lowercase with no spaces or punctuation:\n"
             # removed the variable instruction_answer defined here. (chatgpt suggestion)
-            return render_template("silly.html", 
+            return render_template("index.html", 
             message=instruction_message)  
         if instruction_answer == "y":
             return render_template("silly.html")
         elif instruction_answer == "n":
             return render_template("index.html", message="Okay. Good luck!")
-        
-if __name__ == "__main__":
-    app.run(debug=True)
 
 @app.route("/silly", methods="GET")
-def game_round():
+def silly():
     return render_template("silly.html")
+
+if __name__ == "__main__":
+    app.run(debug=True) 
+    # moved down here so it is only called once. 
