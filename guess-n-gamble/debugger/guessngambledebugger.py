@@ -10,7 +10,9 @@ app.run(host='0.0.0.0', debug=True)
 
 @app.route("/", methods=["GET","POST"])
 def index():
-    instruction_answer = request.form.get("instruction_answer", "")
+   return(render_template("index.html"))
+   
+   ''' instruction_answer = request.form.get("instruction_answer", "")
     if request.method=="POST": # this line is added. will have to add everywhere probably. 
         while instruction_answer not in ["y", "n"]:
             instruction_message = "Please enter y or n, lowercase with no spaces or punctuation:\n"
@@ -28,4 +30,4 @@ def silly():
 
 if __name__ == "__main__":
     app.run(debug=True) 
-    # moved down here so it is only called once. 
+    # moved down here so it is only called once. '''
