@@ -125,10 +125,10 @@ def game_round():
     # asking if the player if they want to G A M B L E. in the final code, none of these will be printed. 
     if len(session["puter_word"]) > 6: 
         wager_message_1 = f'Want an extra hint this round for {points_to_wager}?\nIf you're successful, you gain {points_to_earn} points back. y/n:'
-        wager_answer = request.form["wager_answer"]
+        wager_answer = request.form.get("wager_answer", "")
         while wager_answer not in ["y", "n"]:
             wager_message_2 = "Please enter y or n, lowercase with no spaces or punctuation: "
-            wager_answer = request.form["wager_answer"]
+            wager_answer = request.form.get("wager_answer", "")
             return render_template("game_round.html", 
             message=wager_message_2, 
             round=session["round_count"], 
@@ -153,7 +153,7 @@ def game_round():
 
     # initial guess 
     if request.method == 'POST':
-        user_guess = request.form["user_guess"]
+        user_guess = request.form.get("user_guess", "")
 
     # handling subsequent guesses 
     if user_guess == session["puter_word"]: 
@@ -165,7 +165,7 @@ def game_round():
             while hint_use_counter < 5:
                 # thank you chatgpt for showing me how to do the render_template thing not seven million times
                 hint_message = f"Hint {hint_use_counter + 1} out of 4: {random.choice(hints)}\n Enter your guess:" if hint_use_counter < 4 else "No more hints available."
-                user_guess_2 = request.form["user_guess_2"]
+                user_guess_2 = request.form.get("user_guess_2", "")
                 hint_use_counter += 1
                 if user_guess_2 == session["puter_word"]:
                     session["human"] += points_to_earn 
@@ -176,7 +176,7 @@ def game_round():
         elif wager_answer == "n":
             while hint_use_counter < 4:
                 hint_message = f"Hint {hint_use_counter + 1} out of 3: {random.choice(hints)}\n Enter your guess:" if hint_use_counter < 3 else "No more hints available."
-                user_guess_2 = request.form["user_guess_2"]
+                user_guess_2 = request.form.get("user_guess_2", "")
                 hint_use_counter += 1
                 if user_guess_2 == session["puter_word"]:
                     session["human"] += 2-(hint_use_counter*0.25)
