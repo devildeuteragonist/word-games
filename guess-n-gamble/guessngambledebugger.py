@@ -21,3 +21,11 @@ def index():
         
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route("/instructions", methods=["GET", "POST"])
+def instructions():
+    return render_template("instructions.html")
+
+@app.route("/game_round", methods=["GET", "POST"])
+def game_round():
+    return render_template("game_round.html")
