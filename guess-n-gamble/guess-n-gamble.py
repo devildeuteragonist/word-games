@@ -77,9 +77,9 @@ def start_game():
 # creating function to define hints (jazakhallah khair chatgpt)
 def generate_hints(chosen_word):
     return [
-        f"The second letter of the word is this: {chosen_word[1]}", 
-        f"The third letter of the word is this: {chosen_word[2]}", 
-        f"The fourth letter of the word is this: {chosen_word[3]}"
+        f'The second letter of the word is this: {chosen_word[1]}', 
+        f'The third letter of the word is this: {chosen_word[2]}', 
+        f'The fourth letter of the word is this: {chosen_word[3]}'
     ]
 
 # game
@@ -104,9 +104,9 @@ def game_round():
     ALL OF THIS BELOW WILL ACTUALLY BE ON OUR HTML DOCUMENT. 
     # round/point counter for the reference of the player
     time.sleep(2)
-    print(f"ROUND {session["round_count"]} OF 20 STARTS")
+    print(f'ROUND {session["round_count"]} OF 20 STARTS')
     time.sleep(0.5)
-    print(f"player {session["human"]} points, computer {session["machine"]} points")  
+    print(f'player {session["human"]} points, computer {session["machine"]} points')  
     '''    
 
     # below is the initial hint (the start and end letters of the word and its length)
@@ -117,14 +117,14 @@ def game_round():
     time.sleep(1)
     print("...")
     time.sleep(0.5)
-    print(f"I'm thinking of a word that is {len(session["puter_word"])} letters long...") 
-    print(f"...that starts with {session["puter_word"][0]} and ends with {session["puter_word"][-1]}.")
+    print(f'I'm thinking of a word that is {len(session["puter_word"])} letters long...') 
+    print(f'...that starts with {session["puter_word"][0]} and ends with {session["puter_word"][-1]}.')
     time.sleep(0.5)
     '''
     
     # asking if the player if they want to G A M B L E. in the final code, none of these will be printed. 
     if len(session["puter_word"]) > 6: 
-        wager_message_1 = f"Want an extra hint this round for {points_to_wager}?\nIf you're successful, you gain {points_to_earn} points back. y/n:"
+        wager_message_1 = f'Want an extra hint this round for {points_to_wager}?\nIf you're successful, you gain {points_to_earn} points back. y/n:'
         wager_answer = request.form["wager_answer"]
         while wager_answer not in ["y", "n"]:
             wager_message_2 = "Please enter y or n, lowercase with no spaces or punctuation: "
