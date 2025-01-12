@@ -55,10 +55,10 @@ computer_taunts = ["It's men versus machines, baby!\nAnd I WON!", "I win, you lo
 human_success = ["Man. I guess you got it.", "Ugh! You got me!", 
                  "Drat! How could you beat me!?", "You got me beat...\nBUT THAT WON'T HAPPEN AGAIN!"]
 
-@app.route("/instructions", methods=["GET", "POST"])
+@app.route("/instructions", methods="GET") # when i am able to handle the button logic i will use post as well. 
 # this needs work. and buttons. 
 
-@app.route("/start", methods=["GET","POST"])
+@app.route("/start", methods="GET")
 def start_game():
 # setting the starting number of points for both human and machine
     session["machine"] = 0 
