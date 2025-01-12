@@ -15,6 +15,7 @@ import random
 
 # flask gobbledygook
 app = Flask(__name__)
+app.secret_key = "SUBSTITUTE" 
 # this is just for myself: there was a secret key here. i'll pass it as an environment variable or smthn idk. 
 # app.run(host='0.0.0.0', debug=True)
 
