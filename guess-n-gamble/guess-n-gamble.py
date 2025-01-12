@@ -193,7 +193,7 @@ def game_round():
 
 
 # game ending 
-@app.route('/end_game')
+@app.route('/end_game', methods="GET")
 def end_game():
     scores = f"computer: {session["machine"]}\nplayer: {session["human"]}"
     if session["machine"] > session["human"]:
