@@ -15,16 +15,12 @@ def index():
         return render_template("game_round.html", 
         message=instruction_message)  
     if instruction_answer == "y":
-        return render_template("instructions.html")
+        return render_template("game_round.html")
     elif instruction_answer == "n":
         return render_template("index.html", message="Okay. Good luck!")
         
 if __name__ == "__main__":
     app.run(debug=True)
-
-@app.route("/instructions", methods=["GET", "POST"])
-def instructions():
-    return render_template("instructions.html")
 
 @app.route("/game_round", methods=["GET", "POST"])
 def game_round():
