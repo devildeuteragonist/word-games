@@ -21,16 +21,18 @@ app.secret_key = "SUBSTITUTE"
 
 @app.route("/", methods=["GET","POST"])
 def index():
-    instruction_answer = request.form.get("instruction_answer", "")
-    while instruction_answer not in ["y", "n"]:
-        instruction_message = "Please enter y or n, lowercase with no spaces or punctuation:\n"
-        instruction_answer = request.form["instruction_answer"]
-        return render_template("game_round.html", 
-        message=instruction_message)  
-    if instruction_answer == "y":
-        return render_template("instructions.html")
-    elif instruction_answer == "n":
-        return render_template("index.html", message="Okay. Good luck!")
+    instruction_answer = ""
+    
+    if request.method == "POST":
+        instruction_answer = request.form.get("instruction_answer", "")
+        while instruction_answer not in ["y", "n"]:
+            instruction_message = "Please enter y or n, lowercase with no spaces or punctuation:\n"
+            return render_template("game_round.html", 
+            message=instruction_message)  
+        if instruction_answer == "y":
+            return render_template("instructions.html")
+        elif instruction_answer == "n":
+            return render_template("index.html", message="Okay. Good luck!")
         
 if __name__ == "__main__":
     app.run(debug=True)
