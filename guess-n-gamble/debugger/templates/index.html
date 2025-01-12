@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+</head>
+<body>
+    <h1>this page was """"assisted"""" by chatgpt.</h1>
+    <form method="POST" action="/">
+        <label for="instruction_answer">Do you want to see the instructions? (y/n): </label>
+        <input type="text" id="instruction_answer" name="instruction_answer">
+        <button type="submit">Submit</button>
+    </form>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>
